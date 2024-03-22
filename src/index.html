@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friday Exercise 5</title>
+  </head>
+  <body>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog -->
+    <dialog id="createDialog">
+      <h1>What ToDo?</h1>
+      <form method="dialog">
+        <div>
+          <label>Title</label>
+          <input id="title" type="text" placeholder="enter a title" />
+        </div>
+        <div>
+          <label>Description</label>
+          <input
+            id="description"
+            type="text"
+            placeholder="enter a description"
+          />
+        </div>
+        <button id="create">Create To-Do</button>
+      </form>
+    </dialog>
+
+    <dialog id="editDialog">
+      <h1>Edit ToDo:</h1>
+      <form method="dialog">
+        <div>
+          <label>Title</label>
+          <input
+            id="editTitle"
+            type="text"
+            name="title"
+            placeholder="enter a title"
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <input
+            id="editDescription"
+            name="description"
+            type="text"
+            placeholder="enter a description"
+          />
+        </div>
+        <input type="hidden" id="editId" name="id" />
+        <button id="edit">Edit To-Do</button>
+      </form>
+    </dialog>
+
+    <h1>ToDos:</h1>
+
+    <ul id="todoList"></ul>
+
+    <button id="add">+</button>
+    <button class="hide" id="delete">Delete Completed ToDos</button>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

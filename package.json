@@ -1,0 +1,27 @@
+{
+  "name": "fe05-rest",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"npm:vite\" \"npm:rest\"",
+    "vite": "vite",
+    "rest": "json-server db.json",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test:e2e": "playwright test --ui",
+    "test:unit": "vitest",
+    "test:install": "npx playwright install --with-deps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.11.6",
+    "concurrently": "^8.2.2",
+    "happy-dom": "^13.3.8",
+    "json-server": "^1.0.0-alpha.23",
+    "prettier": "3.2.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vitest": "^1.2.0"
+  }
+}
