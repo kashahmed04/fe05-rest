@@ -157,34 +157,49 @@ loadToDos();
  *
  * today we will talk about web storage and Friday will be WebGL
  *
- * web storage API are other ways to persist data**
- * storage is used with local storage and session storage (how long it sticks around**
+ * web storage API are other ways to persist data (when we say persist data does that mean ways to store data)**
+ * storage is used with local storage, session storage, and indexed DB usually (how long data sticks around)**
  *
- * items are stored under key value pairs and both have to be strings (length gives us number of key value paurs)
- * we can also get the key at a particular index in sotrage
- * we can get the value under the key name
- * we can set item and give it key item and value
- * we can also remove an item by the key (remove the key and value)
- * we can also remove all key value pairs in the API storage
+ * items are stored under key value pairs and both have to be strings in session and local storage but not the
+ * rest of the storage types right**
+ * (length gives us number of key value pairs stored in the storage in our browser)**
+ * we can also get the key at a particular index in storage (so things in local storage go by index so that means they are in array
+ * form like how they are in a JSON file usually right so thats why we can go by index)**(like db.JSON)**(each object is 1 entry
+ * in array with the key as the id as a string)
+ * we can get the value based on the key name
+ * we can set item and give it key name and value but if its an existing key (entry)** it will replace (or edit)** that value
+ * at that key but if the key does not exist it creates a new entry to go at bottom of JSON (or storage)**
+ * we can also remove an item by the key (remove the key and value)** (everything moves up by 1 index when this happens right)**
+ * we can also remove all key value pairs in the API storage so nothing is there anymore in our storage and when we
+ * refresh our page everything is gone** (when would we want to do this is it when we clear our todos list or is that
+ * more like removing individual items so we would use remove item** and for remove
+ * a single item that would be like our todos and deleting one item)**
+ *
+ * are the key value pairs for these funcitons** on slide 2 going to be strings always since
+ * local and session storage use them (only??)** and local and session storage key value pairs can only be strings**
  *
  * LOCAL STORAGE:
  *
  * we can talk to window.localstroage so its available everywhere JS runs and its an instance of the interface storage**
  * the data we store here is associated with a specific protocol,host, and port and each website has its own of each
- * for their local storage and if we change any of these we will get differtn local storage for a different website
+ * for their local storage and if we change any of these we will get different local storage for a different website**
  * this is local to the users machine and never goes to the cloud for local storage (if on PC only on PC and if mobile then
- * only mobile)
- * this is access sycnhronously and have no callbacks or promises and we have to be careful to read or write data because the dtaa witll
- * hang
- * this will persist until we call clear outselves or if the storage quota is reached (the things store will remiain stored if thees
- * two things dont happen)
- * we only get 10 MB of data for local storage per web brwoser
- * if we have a lot of local storage and session storage (5 MiB max for each) then we get a quote exceedde error and**
+ * only mobile)**
+ * this is access sycnhronously and have no callbacks or promises and we have to be careful on how much we
+ * read or write data because the data will be slow and hang**
+ * this will persist until we call clear outselves or if the storage quota is reached
+ * (the things will be stored in the JSON (storage)** will remiain stored if these two things dont happen) (last bullet on slide 4)**
+ * we only get 10 MB of data for local storage per web brwoser (same for session storage)**
+ * if we have a lot of local storage and session storage (5 MiB max for each) then we get a quote exceded error and**
  *
- * we have the same todos and we go to application tab and go to storage then local storage and we have stoage for our 5173 brwoser and
- * we make a todo and it stores it as a key value pair and the key is the id and the value is the whole object for the todo**
- * we can also click the checkbox for each and it will also change in the local stroage
- * code was changed in create,read,update,delete files only here
+ * we have the same todos and we go to application tab and go to storage then local storage and we have stoage for our 5173 brwoser
+ * (or can it be any number browser we start locally)** and we make a todo and it
+ * stores it as a key value pair and the key is the id and the value is the
+ * whole object as a string for the todo** (in the console it does not show up as a string though
+ * for the value)** (the contents is the same as the todo interface)**
+ * we can also click the checkbox for each and it will also change in the local stroage for the complete field??**
+ * code was changed in create,read,update,delete files only for this repo not main, index, or todo.type**
+ * why s the interface named todo.type what is the .type saying**
  *
  * in create.ts we generate our own id's and we use data.now() and we get the MS the object was created and store it as a string
  * instead of the web brwoser making an id for us
@@ -206,25 +221,39 @@ loadToDos();
  * if the users data does not have to exist outside the users machine we can use local storage but if we want it to persist
  * across all devices we use**
  *
- * even when we close and reopen tab the data will still be there**
+ * for local storage even when we close and reopen tab the data will still be there same for when we reload a page and what else**
+ * for local storage all of this above here only applied if we use the same device if we see local storage on different device
+ * it would not be the same (it will not persist throuhgougt devices)**
  *
  * SESSION STORAGE:
  *
- * we access theouggh session stroage form window interfcae
+ * we access theouggh session stroage form window interfcae as well** (is this only for local and session storage)**
  * and the data is associated with a sepcific tab and each tab gets its own session storage tab and still based on the
- * users machine only and it persists until the browser closes (reloading and navigating is ok and if we change tabs but if we actually
- * close it then the data will not get saved) unlike local storage
+ * users machine only and it persists until the browser closes (reloading and navigating is ok and if we change tabs and
+ * come back data will still be there but if we actually
+ * close the tab, then the data will not get saved and gets lost) unlike local storage which saves the changes even
+ * if we close the tab and come back**
+ *
+ * what if we close the tab and go in our history and reopen it would it still have what we saved for session storage and
+ * local storage**
+ *
+ * go over first bullet and what about protocol, host, and post like local storage**
+ * so loal storage can be used for almost anything but session storage is uaully used for forms
+ * for example and usually used to save the text entry on something (last bullet point)**
  *
  * GitHub save form information into session storage and when we come back to tab we repopulate the data but if we close
  * the tab then the data is gone
  *
- * we add todos and it shows up in sessin storage with key as id and value as object and when we go to different browser tab
- * its empty because each tab has its own version of session sotrage and there is a way to clone is over and it makes a one time
- * copy in a new brwoser** the duplicate is only a one time copy and if we change one the other does not chage it just brings the
- * stoage there once intially**
+ * we add todos and it shows up in session storage with key as id and value as object and when we go to different browser tab
+ * its empty because each tab has its own version of session sotrage and there is a way to clone it over to another tab
+ * and it makes a one time copy in a new browser** the duplicate is only a one time copy and if we change one the
+ * other does not chage it just brings the storage there once intially for session storage**
+ *
+ * for local storage if we open 2 different tabs will there be the same data and if one changes the other one changes then
+ * or how would that work**
  *
  * in create.ts we did find and replace and did session sotrage instead of local storage (the difference is ownership rules
- * and how long data persists for local sotrage and session sotrage)**
+ * and how long data persists (lasts??)** for local sotrage and session sotrage)**
  *
  * INDEXED DB:
  *
