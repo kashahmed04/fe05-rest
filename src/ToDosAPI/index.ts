@@ -1,6 +1,6 @@
 import { createToDo } from './create';
 import { readToDos } from './read';
-import { toggleToDo } from './update'; // Step 3 would like you to update this import.
+import { editToDo, toggleToDo } from './update'; // Step 3 would like you to update this import.
 import { deleteToDo } from './delete';
 
 export const ToDosAPI = {
@@ -9,6 +9,7 @@ export const ToDosAPI = {
   update: {
     // Step 3 Code Goes Here
     toggle: toggleToDo,
+    edit: editToDo,
   },
   delete: deleteToDo,
 };

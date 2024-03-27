@@ -2,8 +2,8 @@
   "todos": [
     {
       "id": "b6ae",
-      "title": "Add an Edit Button",
-      "description": "It should look like that --->",
+      "title": "Test an Edit Button",
+      "description": "It should look like this --->",
       "complete": false
     }
   ]

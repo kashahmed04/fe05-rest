@@ -70,6 +70,15 @@ const loadToDos = async () => {
     `;
 
     // Step 4 Code Goes Here:
+    const editToDoButton = document.createElement('button');
+    editToDoButton.innerText = '✏️';
+    editToDoButton.onclick = () => {
+      editIdInput.value = todo.id;
+      editTitleInput.value = todo.title;
+      editDescriptionInput.value = todo.description;
+      editDialog.showModal();
+    };
+    li.append(editToDoButton);
 
     // put the checkbox first/before the <h2>/<p> children
     li.prepend(check);
@@ -103,6 +112,16 @@ createButton.addEventListener('click', async () => {
   await ToDosAPI.create(freshToDo);
 
   // then reload all ToDos
+  loadToDos();
+});
+
+editButton.addEventListener('click', async () => {
+  const id = editIdInput.value;
+  const title = editTitleInput.value;
+  const description = editDescriptionInput.value;
+
+  await ToDosAPI.update.edit(id, { title, description });
+
   loadToDos();
 });
 

@@ -27,4 +27,17 @@ export const toggleToDo = async (id: string, checked: boolean) => {
 
 export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
   // Step 2 Code Goes Here:
+  const request = new Request(`http://localhost:3000/todos/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(editedToDo),
+  });
+
+  const response = await fetch(request);
+
+  if (!response.ok) {
+    console.log('something went wrong patching ToDo ' + id);
+    return;
+  }
+
+  await response.json();
 };
