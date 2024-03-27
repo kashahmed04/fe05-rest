@@ -169,7 +169,7 @@ loadToDos();
  *
  * today we will talk about web storage and Friday will be WebGL
  *
- * web storage API are other ways to persist data (when we say persist data does that mean ways to store data)**
+ * web storage API are other ways to persist data (when we say persist data does that mean how long the data lasts)**
  * storage is used with local storage, session storage, and indexed DB usually (how long data sticks around)**
  *
  * items are stored under key value pairs and both have to be strings in session and local storage but not the
@@ -264,26 +264,31 @@ loadToDos();
  * for local storage if we open 2 different tabs will there be the same data and if one changes the other one changes then
  * or how would that work**
  *
- * in create.ts we did find and replace and did session sotrage instead of local storage (the difference is ownership rules
- * and how long data persists (lasts??)** for local sotrage and session sotrage)**
+ * in create.ts we did find and replace and did session sotrage instead of local storage (the difference is ownership rules**
+ * and how long data persists (lasts??)** for local storage and session storage)**
  *
  * INDEXED DB:
  *
- * another local version of storage and it ends up being a local transcational (describe our operaions as connected to database and
+ * another local version of storage and it ends up being a local transcational (describe our operaions as connected to a database and
  * making a transaction and detailing the steps we want to happen and we subtmit those request and it goes through sucessfully
- * the data rolls into the JSON otherwise if there is 1 error all the data is returned back to us) and no sequel is (we have a key
- * for each row in the table and the data can be whatever we want)
+ * the data rolls into the JSON otherwise if there is 1 error all the data is returned back to us)** and no sequel is (we have a key
+ * for each row in the table and the data can be whatever we want)**
  *
- * just like locao stroage it had a specific protocol,host,port and when we store items the only things that is paramount is that we
- * have a key is common and    can be different**
+ * just like local stroage it had a specific protocol,host,port and when we store items the only things that is paramount
+ * (important)** is that we have a key is common and    can be different**
  *
- * unlike local and session sotrage this is event based and we need to do event callbacks and it does not lockup application while these
- * things are happneing and stores more than just strings unlike keys and values in local and session stroage (both need strings
- * for keys and values)
+ * unlike local and session sotrage this is event based and we need to do event callbacks and it does not lockup application (what
+ * does it mean by lockup)** while these hings are happneing and stores more than just strings unlike keys and values
+ * in local and session stroage (both need strings for keys and values)**
  *
- * we can store a lot in our web brwoser compared to local and session storage (does session and local ahve same sotrage in browser)**
+ * we can store a lot in our web brwoser compared to local and session storage (does session and local have same sotrage in browser)**
  *
- * persistent mode and not persistent mode
+ * what does the protocl, host, and port do is it the same thing in local storage that they have to be the same for a website and
+ * if we change one we could get different storage for another website**
+ *
+ * go over third, fourth, and fifth bullet point**
+ *
+ * persistent mode and not persistent mode**
  *
  * in our index db we have a todo data base and it has all out todos in it and we have to press reload button in inspector to see updates
  * (and in brwoser)** and we cant see updates live and the key is id as a string and value is the object and we can delete the data base when
@@ -320,11 +325,13 @@ loadToDos();
  * HTTP COOKIES:
  *
  * older version of web tech and they are small pieces of name value pairs that get passed between client
- * and serevr and each server request will send all cookies to the server associated with the site
+ * and serevr and each server request will send all cookies to the server associated with the site**
  *
- * they are still used in authentication and session management (to login into an account)
+ * they are still used in authentication and session management (to login into an account)**
  *
  * because of privacy we still get asked to accept cookies (we can mostly use local storage instead though)
+ *
+ * how in depth do we have to know HTTP cookies, fire base, and air table**
  *
  * FIREBASE:
  *
@@ -332,19 +339,22 @@ loadToDos();
  * based on id and**
  * if we use it incorrectly it can become expensive financially
  * we have some sort of long term storage for things and put it in firebase when we want to use it and store it back
- * to another storage we are down to lessen the costs
+ * to another storage we are down to lessen the costs** why would we want to put something in fire base**
+ *
+ * what does it mean has ballooned to do all that on slide 9**
  *
  * AIRTABLE:
  *
  * like a google spreadsheet but the difference is that we can store a lot of types of information in each cell rather
- * than text (images, videos, etc.)
+ * than text (images, videos, etc.) (can we store multiple items in one cell)**
  *
  * we can use it to populate online store and it has a web API and it has a get record and it makes a request with id in URL and update
- * makes path or put request with some id and create is same thing with post and delete deletes based on id and its a resfull API**
+ * makes patch or put request with some id and create is same thing but without an id with post and delete deletes based
+ * on id and its a resful API**
  *
- * there is an API key to access this data
+ * there is an API key to access this data**
  *
  * in the application tab we have web SQL and we cant use it anymore and it was chrome and googles appracoh to database in a browser
- * but now index DB is used instead
+ * but now index DB is used instead**
  *
  */
