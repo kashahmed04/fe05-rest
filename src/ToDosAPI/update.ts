@@ -30,6 +30,7 @@ export const toggleToDo = async (id: string, checked: boolean) => {
   //can we change a key or no once we make it then it stays the same**
   //we stringify this item so that we can pass the value in as a string into local storage (makes the whole object
   //a string)
+  //if there is an existing key then it overrides whats there otherwise if its a new key then we make a new entry
   localStorage.setItem(id, JSON.stringify(alteredToDo));
 };
 
@@ -50,4 +51,4 @@ export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
   localStorage.setItem(id, JSON.stringify(alteredToDo));
 };
 
-//the only changes that were made were in create, read, update, and delete right nothing in main, index, or, todotype**
+//the only changes that were made were in create, read, update, and delete right nothing in main, index, or, todotype (yes)
