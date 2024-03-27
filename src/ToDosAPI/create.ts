@@ -1,6 +1,11 @@
 import { ToDo } from './ToDo.type';
 import { TODOS_TABLE, getDB } from './db';
 
+/**
+ *
+ *
+ *
+ */
 export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
   //why do we do await getDB here because it already has an await in db.ts for getDB cant we just call it regularly here**
   const db = await getDB();
@@ -27,6 +32,7 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
     };
 
     objectStore.add({
+      //object store is the actual table to add and remove things
       //what does this do and why do we have add here do the storage methods in slide 2 not count for indexed DB**
       //this adds an entry into our sotrage with the id as key and object as value**
       //why dont we do JSON.stringify(objectStore) here then**
@@ -45,3 +51,13 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
     */
   });
 };
+
+//get, getall, put, add, and delete for the index DB API and get is one specific thing and we dont need it here
+//since we get things by the id
+
+//even if we restart our computer, close the tab, or reload the tab it remains for data but earses if we erase of storage in browser
+//gets full so it does it automatically to erase
+//for session when we close tab then information is gone but if we reload or switch tab and come back but tab it open
+//then data remains there and if we go to another page or url and we come back then the data remains there
+//maintins the data even if we close the tab (but for hot key to open tab again not for doing it with mouse)
+//but if we quit the browser and come abck it goes away
