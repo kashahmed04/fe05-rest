@@ -153,6 +153,18 @@ deleteButton.addEventListener('click', async () => {
 loadToDos();
 
 /**
+ * 
+ *  //get, getall, put, add, and delete for the index DB API and get is one specific thing and we dont need it here
+    //since we get things by the id
+
+    //even if we restart our computer, close the tab, or reload the tab it remains for data but earses if we erase of storage in browser
+    //gets full so it does it automatically to erase for local storage
+    
+    //for session when we close tab then information is gone but if we reload or switch tab and come back but tab it open
+    //then data remains there and if we go to another page or url and we come back then the data remains there
+    //maintins the data even if we close the tab (but for hot key to open tab again not for doing it with mouse)
+    //but if we quit the browser and come abck it goes away
+
  * NEW NOTES:
  *
  * today we will talk about web storage and Friday will be WebGL
