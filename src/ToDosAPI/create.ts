@@ -23,3 +23,6 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
   // write it to storage
   sessionStorage.setItem(id, JSON.stringify(todo));
 };
+
+//main difference between this file and local storage was that everything on slide 2 would say sessionStorage
+//instead of localStorage**
