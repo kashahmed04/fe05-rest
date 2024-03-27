@@ -3,7 +3,6 @@ import './styles.css';
 
 import { ToDo } from './ToDosAPI/ToDo.type';
 import { ToDosAPI } from './ToDosAPI'; // when no filename is specified, import from "index.ts"
-import { initDB } from './ToDosAPI/db';
 
 // select references to DOM elements
 const addButton = document.querySelector('#add') as HTMLButtonElement;

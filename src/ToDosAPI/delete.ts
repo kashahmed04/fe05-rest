@@ -2,6 +2,7 @@ import { TODOS_TABLE, getDB } from './db';
 
 export const deleteToDo = async (id: string) => {
   const db = await getDB();
+  // we can chain these calls together, if we wish:
   const request = db
     .transaction([TODOS_TABLE], 'readwrite')
     .objectStore(TODOS_TABLE)
@@ -14,7 +15,7 @@ export const deleteToDo = async (id: string) => {
     };
 
     request.onsuccess = (event) => {
-      console.log(`deleted ToDo ${id}`);
+      console.log(`deleted ToDo ${id}`, event);
       resolve();
     };
   });
