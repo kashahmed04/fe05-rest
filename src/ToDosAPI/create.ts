@@ -6,5 +6,5 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
     id,
     ...freshToDo,
   };
-  sessionStorage.setItem(id, JSON.stringify(todo));
+  localStorage.setItem(id, JSON.stringify(todo));
 };
