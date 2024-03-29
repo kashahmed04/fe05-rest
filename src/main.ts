@@ -155,7 +155,7 @@ loadToDos();
 /**
  * 
  *  //get, getall, put, add, and delete for the index DB API and get is one specific thing and we dont need it here
-    //since we get things by the id (used for web API only)** delete is the only one common in web API and restful API (CRUD)**
+    //since we get things by the id (used for web API only) (these are the queries for the database)
 
     //even if we restart our computer, close the tab, or reload the tab it remains for data but earses if we erase of storage in browser
     //gets full so it does it automatically to erase for local storage
@@ -169,12 +169,21 @@ loadToDos();
  *
  * today we will talk about web storage and Friday will be WebGL
  *
- * web storage API are other ways to persist data (when we say persist data does that mean how long the data lasts)**
- * storage is used with local storage, session storage, and indexed DB usually (how long data sticks around)**
+ * web storage API are other ways to persist data (when we say persist data does that mean how long the data lasts)
+ * storage is used with local storage, session storage, and indexed DB usually (how long data sticks around)
+ * index DB will stay around until application deleted it itself (until we call delete on ourselves)
+ * and unless the user goes in themselevs and deletes the data 
+ * in their brwoser (like delete all todos) and developers could go into the application then index db and clear everything
+ * and if stroage gets full in the browser then it would prevent us from writing anything new or could just empty out some things
  *
- * items are stored under key value pairs and both have to be strings in session and local storage but not the
- * rest of the storage types right**
- * (length gives us number of key value pairs stored in the storage in our browser)**
+ * items are stored under key value pairs and both have to be strings in session and local storage
+ * (the other storage types are also key value pairs the ones after local, session, and 
+ * indexed DB right)
+ * cookies are similar in terms of the string as a key and firebase is closer to index DB in terms of structure and the difference
+ * is that its out on the cloud and we have to connect to it and airtable allows more flexibility in what we can store but stroed
+ * elsewhere (firebase and airable we like index DB more flexibility with storage and HTTP cookies is more like local and session
+ * sotrage with keys and strings)
+ * (length gives us number of key value pairs stored in the storage in our browser)
  * we can also get the key at a particular index in storage (so things in local storage go by index so that means they are in array
  * form like how they are in a JSON file usually right so thats why we can go by index)**(like db.JSON)**(each object is 1 entry
  * in array with the key as the id as a string)
@@ -203,6 +212,14 @@ loadToDos();
  * (the things will be stored in the JSON (storage)** will remiain stored if these two things dont happen) (last bullet on slide 4)**
  * we only get 10 MB of data for local storage per web brwoser (same for session storage)**
  * if we have a lot of local storage and session storage (5 MiB max for each) then we get a quote exceded error and**
+ * 
+ * every unique protocal/host/port gets its own local stroage and it can only talk to its storage and nobody elses 
+ * so it all has to be the same when we want to get data
+ * accessed synchronously: its ok to read and write but dont read and write a large amount of data and it takes a long
+ * time to access that data if its a large amount and it looks like our applicaiton locks up until our operation is finished
+ * 
+ * when the data storage is exceeded then safari says that if we did not use that data within several days it will delete it 
+ * and all that data is removed at the same time (we dont get notified when data is getting deleted)
  *
  * we have the same todos and we go to application tab and go to storage then local storage and we have stoage for our 5173 brwoser
  * (or can it be any number browser we start locally)** and we make a todo and it
@@ -231,7 +248,7 @@ loadToDos();
  * for delete.ts we just do local storage.remove item at a location
  *
  * if the users data does not have to exist outside the users machine we can use local storage but if we want it to persist
- * across all devices we use**
+ * across all devices we use firebase or airtable to put into the cloud
  *
  * for local storage even when we close and reopen tab the data will still be there same for when we reload a page and what else**
  * for local storage all of this above here only applied if we use the same device if we see local storage on different device
@@ -248,6 +265,9 @@ loadToDos();
  *
  * what if we close the tab and go in our history and reopen it would it still have what we saved for session storage and
  * local storage**
+ * 
+ * if we visit a site with http thats one session storage and if we say https thats another sessino storage so those
+ * are two different buckets of storage and wont merge 
  *
  * go over first bullet and what about protocol, host, and post like local storage**
  * so loal storage can be used for almost anything but session storage is uaully used for forms
@@ -268,6 +288,17 @@ loadToDos();
  * and how long data persists (lasts??)** for local storage and session storage)**
  *
  * INDEXED DB:
+ * 
+ * all the rows associated with our key can have different types of data and dont have to be the same (each key does
+ * not have to have the same type of value)(like one todo having a full object and another having a partial todo)
+ * 
+ * asynchonous we can set it off and do its work and tell us when its done and we dont have to wait before executing code again
+ * (we put a bookmark to come back to this later)(difference between blocking all other execution for synchronous or its asyncronous
+ * where we move onto the next function or line of code outside of async await and it gets added back to execution stack once
+ * await is done)(we defined our own promises with resolve and the resolve thing is saying to go abck to whereever we awaited and continue)
+ * when we have a promise resolve then that just pauses the application that has the await until the promise is resolved
+ * and everything else runs then when its resolved the file runs again for asynchronous
+ * with synchronous that pauses all processes until the await is resolved 
  *
  * another local version of storage and it ends up being a local transcational (describe our operaions as connected to a database and
  * making a transaction and detailing the steps we want to happen and we subtmit those request and it goes through sucessfully
@@ -332,6 +363,9 @@ loadToDos();
  * because of privacy we still get asked to accept cookies (we can mostly use local storage instead though)
  *
  * how in depth do we have to know HTTP cookies, fire base, and air table**
+ * 
+ * requests are made every time we have a request method or the client asks for data from the server and if we want to load
+ * any HTML, CSS, or JS (because its a request for the content to show on the screen)
  *
  * FIREBASE:
  *
@@ -342,6 +376,11 @@ loadToDos();
  * to another storage we are down to lessen the costs** why would we want to put something in fire base**
  *
  * what does it mean has ballooned to do all that on slide 9**
+ * 
+ * fire base has documents and they are dientified by key or index and many users can subscribe to the same document
+ * which means they have an opened a seperate socket to talk to that document and if a user changes property on the document
+ * it sends a message to everyone else with that document they subscribed to as well (socket is used to see if there are any updates
+ * and pulls the changes if neeed)(the document updates if needed by socket)
  *
  * AIRTABLE:
  *
@@ -356,5 +395,9 @@ loadToDos();
  *
  * in the application tab we have web SQL and we cant use it anymore and it was chrome and googles appracoh to database in a browser
  * but now index DB is used instead**
+ * 
+ * airtable has a product line around taking a spreadsheet and not displaying it like a spreadsheet and they have their different view
+ * that let us render it differently and index DB stroes locally and airtable stores on the cloud but they have the same type
+ * of idea with the spreadsheet
  *
  */
