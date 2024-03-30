@@ -49,7 +49,7 @@ export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
     ...existingToDo,
     ...editedToDo,
     //wont this create two values for the id how does that work****
-    //is it that when we put two things in an object like this how does it know which one to replace**
+    //is it that when we put two things in an object like this how does it know which one to replace****
   };
 
   // and write it back
