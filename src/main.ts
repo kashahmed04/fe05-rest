@@ -158,7 +158,7 @@ loadToDos();
     //since we get things by the id (used for web API only) (these are the queries for the database)
 
     //even if we restart our computer, close the tab, or reload the tab it remains for data but earses if we erase of storage in browser
-    //gets full so it does it automatically to erase for local storage
+    //gets full so it does it automatically to erase for local storage (local to our machine)
 
     //for session when we close tab then information is gone but if we reload or switch tab and come back but tab it open
     //then data remains there and if we go to another page or url and we come back then the data remains there
@@ -266,7 +266,7 @@ loadToDos();
  * what if we close the tab and go in our history and reopen it would it still have what we saved for session storage and
  * local storage**
  * 
- * if we visit a site with http thats one session storage and if we say https thats another sessino storage so those
+ * if we visit a site with http thats one session storage and if we say https thats another session storage so those
  * are two different buckets of storage and wont merge 
  *
  * go over first bullet and what about protocol, host, and post like local storage**
@@ -288,6 +288,10 @@ loadToDos();
  * and how long data persists (lasts??)** for local storage and session storage)**
  *
  * INDEXED DB:
+ * 
+ * for the third bullet point what does it mean that all items should have a key in commmon because I thought keys had to be unique****
+ * 
+ * transaction is retrieving and giving the storage (JSON) data but the NoSQL is the actual storage right****
  * 
  * all the rows associated with our key can have different types of data and dont have to be the same (each key does
  * not have to have the same type of value)(like one todo having a full object and another having a partial todo)
@@ -377,7 +381,7 @@ loadToDos();
  *
  * what does it mean has ballooned to do all that on slide 9**
  * 
- * fire base has documents and they are dientified by key or index and many users can subscribe to the same document
+ * fire base has documents and they are identified by key or index and many users can subscribe to the same document
  * which means they have an opened a seperate socket to talk to that document and if a user changes property on the document
  * it sends a message to everyone else with that document they subscribed to as well (socket is used to see if there are any updates
  * and pulls the changes if neeed)(the document updates if needed by socket)
@@ -399,5 +403,14 @@ loadToDos();
  * airtable has a product line around taking a spreadsheet and not displaying it like a spreadsheet and they have their different view
  * that let us render it differently and index DB stroes locally and airtable stores on the cloud but they have the same type
  * of idea with the spreadsheet
+ * 
+ * is air table the only one that has the restful and CRUD operations because the other slides dont metntion it
+ * but technically since we get and set data in the server doesnt it count as resftul and CRUD operations****
+ * 
+ * cookies also stores locally and it like local storage in terms of data saves on only one machine right and not other mahcines
+ * or can it also save on other machines if we have an account on a website using cookies****
+ * 
+ * is indexed DB the only one that can be any data type for key but the rest of storages have to have a string as a key
+ * and the value can be anything for all storages****
  *
  */
