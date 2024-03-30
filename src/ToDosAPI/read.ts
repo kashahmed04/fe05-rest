@@ -32,6 +32,10 @@ export const readToDos = async () => {
   //something else is done using it and the object store is actually doing the operation**
   //transaction is the overall operation and the object store is one part of the transaction
 
+  //transaction is the actual operation we need to do (wait in a queue to wait and touch data base or reserve it so nothing
+  //else can touch it)**** while the object store is respinsbile for passing that operation into the JSON
+  //(the data we got back from JSON or want to send to JSON from the transaction (both))****
+
   // readToDos will eventually resolve to a ToDo[]**
   return new Promise<ToDo[]>((resolve) => {
     // this is how we ask for all of the ToDos:**
@@ -54,6 +58,9 @@ export const readToDos = async () => {
       console.log('read all ToDos', (event.target as any).result);
       // resolve with the result, which is a ToDos[]
       resolve((event.target as any).result); //how does the resolve give us an array of todos**
+
+      //does it automatically put it in an array for us how does it know if we put it in the promise like that**** (how does it
+      //know to put each todo object in the array if everyhing gets returned at once from JSON)****
     };
   });
 };

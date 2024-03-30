@@ -9,7 +9,8 @@ let db: IDBDatabase;
  * like title and description and the browser will call upgrade needed when we crrate database from scartch and no data base
  * in browser and if we want to change upgrade to run from data bases
  *
- * once upgradeneeded has ran then it calls onsuccess then it saves the thing in the data base and resolves the promise**
+ * once upgradeneeded has ran then it calls onsuccess then it saves the thing in the data base and resolves the promise
+ * (the db variable)****
  *
  * return new Promise<void>((resolve) => { we created a promise and it does not return
  * the anything and eventually we call resolve to solve our promise and we are ready to proceed somewhere else
@@ -89,6 +90,10 @@ export const initDB = async () => {
         keyPath: 'id',
       });
 
+      //so if we call onupgrade needed first when we initially load the browser to get out data why
+      //is nothing else except the key included I thought we needed a key and value then it would go to onsuccess and say we
+      //loaded and we can do other things we need to do****
+
       //they call it a table but its a key value thing and it has 2 columns and it has the key in one column and the
       //data stored in that key (the value)
       //one key will have various columns associated with it because it stores each entry seperately in the columns for that key
@@ -96,6 +101,9 @@ export const initDB = async () => {
       //the software has to visit each article and each author for the article and with the index
       //it is faster because it has list of authors already (when we use create index)
       //if we forgot index it would maybe crash the server if there are a lot of users getting specific thing without an index
+      //what is the unique part saying**** (what if we made it true)****
+      //so basically each entry for the object is a seperate column for the value of the key which is the id****
+      //would the id also be in the value section and the key section because its part of the object****
 
       //go over**
       // we technically don't have to create indexes for our use case**

@@ -13,6 +13,10 @@ export const deleteToDo = async (id: string) => {
     .objectStore(TODOS_TABLE)
     .delete(id);
 
+  //how does it know to assocoaite DB with the promise below to see if something got deleted because
+  //we dont specifiy anything down below so how does it know****
+  //is the event involved in checking for the actions we do within each file to see if it went through****
+
   //go over**
   return new Promise<void>((resolve) => {
     request.onerror = (event) => {
