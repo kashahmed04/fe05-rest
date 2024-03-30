@@ -15,6 +15,7 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
   const todo: ToDo = {
     id,
     ...freshToDo,
+    //this creates a new id to go into fresh todo or are these two seperate items being added as a value to the id****
   };
 
   // the above is shorthand equivalent to

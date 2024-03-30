@@ -21,6 +21,9 @@ export const toggleToDo = async (id: string, checked: boolean) => {
     complete: !checked,
   };
 
+  //how does this changed the checked status of the exisitng todo if its in the same object I thought it would just create a new property
+  //of checked** (won't it put 2 checks in)****
+
   // and write it back
   //we set the item to go back to local storage (we dont have a db.JSON data base here)**
   //set item sets the key value pair in the local storage (JSON)** at the specific location or does it
@@ -45,6 +48,8 @@ export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
     //this would be the same thing for editedtodo but it would be editedtodo.id,complete,title,description**
     ...existingToDo,
     ...editedToDo,
+    //wont this create two values for the id how does that work****
+    //is it that when we put two things in an object like this how does it know which one to replace**
   };
 
   // and write it back

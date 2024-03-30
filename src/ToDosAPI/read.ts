@@ -6,6 +6,8 @@ export const readToDos = async () => {
   // iterate over all items in localStorage
   // for slide 2 the storage is the interface and its the general pattern the local and session (use local for session storage instead)
   //storage follow
+  //so we can also go through the local storage since its an array of objects right (same for session storage and other types)
+  //of storages or just local and session storage****
   for (let i = 0; i < localStorage.length; i++) {
     // get the key at index i
     //basically for each iteration we get the key and it says
