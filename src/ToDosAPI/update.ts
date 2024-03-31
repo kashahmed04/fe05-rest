@@ -96,4 +96,4 @@ export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
   });
 };
 
-//what does event represent in all files****
+//what does event represent in all files (could be event code or error message and it would be meta data about the error event)

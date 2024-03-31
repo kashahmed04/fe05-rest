@@ -26,17 +26,11 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
       resolve(); //what does this do**
     };
 
-    //why dont we do objectStore here instead of transaction because in read and update we did that with out requests
-    //so doesnt add count as a request why did we put transaction here instead****
-    //also isnt the transaction the operation and the object store is the actual JSON data so wouldnt we want to work
-    //with thea actual JSON data****
+    //transaction is saying we are done or not with the operation
     transaction.oncomplete = (event) => {
       console.log(`created ToDo ${id}`, event); //what would be the event in this case**
       resolve(); //what does this do**
     };
-
-    //so when we get to this promise does it do the add to the table then on oncomplete otherwise the onerror if it did not work****
-    //(what is the order of execution how does it know)****
 
     objectStore.add({
       //object store is the actual table to add and remove things
@@ -46,6 +40,8 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
       id,
       ...freshToDo,
     });
+
+    //it does not matter here where we put the put, get, etc.
 
     // the above is a shorthand equivalent to:
     /*

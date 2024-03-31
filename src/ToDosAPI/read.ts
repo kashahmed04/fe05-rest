@@ -33,27 +33,25 @@ export const readToDos = async () => {
   //transaction is the overall operation and the object store is one part of the transaction
 
   //transaction is the actual operation we need to do (wait in a queue to wait and touch data base or reserve it so nothing
-  //else can touch it if its available)**** while the object store is responsbile for
-  //passing that operation (data)**** into the JSON that we want to work with
-  //(the data we got back from JSON or want to send to JSON from the transaction (both))****
+  //else can touch it if its available) while the object store is responsbile for
+  //passing that operation (data) into the JSON that we want to work with
+  //(the data we got back from JSON or want to send to JSON from the transaction (both))
 
   // readToDos will eventually resolve to a ToDo[]**
   return new Promise<ToDo[]>((resolve) => {
     // this is how we ask for all of the ToDos:**
     //from our storage get all the entires (how do we store it as a todos array to be used in main)**
     const request = objectStore.getAll(); //would we say a specific id in the () if we said get() and everything else would be the same
-    //but instead of an array returning it would just be Promise<ToDo>****
-    //(how would onerror resolve([]) change the resolve in onsuccess)****
-
+    //but instead of an array returning it would just be Promise<ToDo> (yes)
     //how do we know when to put our request in the promise or not because we did not for delete and does it matter
     //where we put the request in the promise because for create it was in the bottom of the promise but in read, and update
-    //it was on the top of the promise****
+    //it was on the top of the promise
 
     // set up the error handler**
     request.onerror = (event) => {
       console.log('something went wrong reading ToDos', event);
       // resolve to an empty list : []**
-      resolve([]);
+      resolve([]); //we could put null or undefined for the get here
     };
 
     request.onsuccess = (event) => {
@@ -65,9 +63,7 @@ export const readToDos = async () => {
       console.log('read all ToDos', (event.target as any).result);
       // resolve with the result, which is a ToDos[]
       resolve((event.target as any).result); //how does the resolve give us an array of todos**
-
-      //does it automatically put it in an array for us how does it know if we put it in the promise like that**** (how does it
-      //know to put each todo object in the array if everyhing gets returned at once from JSON)****
+      //this gets everything all at once and puts it in the array
     };
   });
 };
