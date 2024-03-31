@@ -289,11 +289,13 @@ loadToDos();
  *
  * INDEXED DB:
  * 
- * this is also local to the users machine since it has a specific protocol/host/port right****
+ * this is also local to the users machine since it has a specific protocol/host/port right (local for indexed)
  * 
  * for the third bullet point what does it mean that all items should have a key in commmon because I thought keys had to be unique****
+ * every row has a key and it has the same field on the object or the same datatype but then the rest of information in that row does
+ * not have to be the same 
  * 
- * transaction is retrieving and giving the storage (JSON) data but the NoSQL is the actual storage right****
+ * NoSQL is the actual data base right****
  * 
  * all the rows associated with our key can have different types of data and dont have to be the same (each key does
  * not have to have the same type of value)(like one todo having a full object and another having a partial todo)
@@ -372,8 +374,11 @@ loadToDos();
  * 
  * requests are made every time we have a request method or the client asks for data from the server and if we want to load
  * any HTML, CSS, or JS (because its a request for the content to show on the screen)
- * does this also apply to if we want to pass data in like account information for login****
- * cookies is on the cloud to so the users login can be stores and used throughought diffrent devices for one acount right****
+ * does this also apply to if we want to pass data in like account information for login (this would be part of the post
+ * request that gets made)
+ * cookies is on the cloud to so the users login can be stores and used throughought diffrent devices for one acount right
+ * (created on a server and client and gets passed back and forth from server to browser and the browser stores it and
+ * the server does its things and sends and recieves data)
  *
  * FIREBASE:
  *
@@ -389,9 +394,10 @@ loadToDos();
  * which means they have an opened a seperate socket to talk to that document and if a user changes property on the document
  * it sends a message to everyone else with that document they subscribed to as well (socket is used to see if there are any updates
  * and pulls the changes if neeed)(the document updates if needed by socket) for the update is it automatic or does
- * it ask the user to update or notify them****
+ * it ask the user to update or notify them (this is like an event listener on the update and the socket
+ * says the update has happened)
  * 
- * how can ths become expansive****
+ * how can ths become expensive (its maintaing access to everything and the amount of things stored)
  *
  * AIRTABLE:
  *
@@ -412,12 +418,6 @@ loadToDos();
  * of idea with the spreadsheet
  * 
  * is air table the only one that has the restful and CRUD operations because the other slides dont metntion it
- * but technically since we get and set data in the server doesnt it count as resftul and CRUD operations****
- * 
- * cookies also stores locally and it like local storage in terms of data saves on only one machine right and not other mahcines
- * or can it also save on other machines if we have an account on a website using cookies****
- * 
- * is indexed DB the only one that can be any data type for key but the rest of storages have to have a string as a key
- * and the value can be anything for all storages****
+ * but technically since we get and set data in the server doesnt it count as resftul and CRUD operations (yes)
  *
  */
