@@ -41,7 +41,9 @@ export const readToDos = async () => {
   return new Promise<ToDo[]>((resolve) => {
     // this is how we ask for all of the ToDos:**
     //from our storage get all the entires (how do we store it as a todos array to be used in main)**
-    const request = objectStore.getAll();
+    const request = objectStore.getAll(); //would we say a specific id in the () if we said get() and everything else would be the same
+    //but instead of an array returning it would just be Promise<ToDo>****
+    //(how would onerror resolve([]) change the resolve in onsuccess)****
 
     //how do we know when to put our request in the promise or not because we did not for delete and does it matter
     //where we put the request in the promise because for create it was in the bottom of the promise but in read, and update
