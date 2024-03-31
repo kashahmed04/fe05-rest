@@ -160,7 +160,7 @@ loadToDos();
     //even if we restart our computer, close the tab, or reload the tab it remains for data but earses if we erase of storage in browser
     //gets full so it does it automatically to erase for local storage (local to our machine)
 
-    //for session when we close tab then information is gone but if we reload or switch tab and come back but tab it open
+    //for session when we close tab then information is gone but if we reload or switch tab and come back but tab is open
     //then data remains there and if we go to another page or url and we come back then the data remains there
     //maintins the data even if we close the tab (but for hot key to open tab again not for doing it with mouse)
     //but if we quit the browser and come back it goes away
@@ -289,6 +289,8 @@ loadToDos();
  *
  * INDEXED DB:
  * 
+ * this is also local to the users machine since it has a specific protocol/host/port right****
+ * 
  * for the third bullet point what does it mean that all items should have a key in commmon because I thought keys had to be unique****
  * 
  * transaction is retrieving and giving the storage (JSON) data but the NoSQL is the actual storage right****
@@ -370,6 +372,8 @@ loadToDos();
  * 
  * requests are made every time we have a request method or the client asks for data from the server and if we want to load
  * any HTML, CSS, or JS (because its a request for the content to show on the screen)
+ * does this also apply to if we want to pass data in like account information for login****
+ * cookies is on the cloud to so the users login can be stores and used throughought diffrent devices for one acount right****
  *
  * FIREBASE:
  *
@@ -384,7 +388,10 @@ loadToDos();
  * fire base has documents and they are identified by key or index and many users can subscribe to the same document
  * which means they have an opened a seperate socket to talk to that document and if a user changes property on the document
  * it sends a message to everyone else with that document they subscribed to as well (socket is used to see if there are any updates
- * and pulls the changes if neeed)(the document updates if needed by socket)
+ * and pulls the changes if neeed)(the document updates if needed by socket) for the update is it automatic or does
+ * it ask the user to update or notify them****
+ * 
+ * how can ths become expansive****
  *
  * AIRTABLE:
  *
