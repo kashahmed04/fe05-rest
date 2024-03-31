@@ -9,6 +9,11 @@ export const deleteToDo = async (id: string) => {
   const request = db
     //we only have one const there thats the request and instead of having seperate variable for each transactino and object sotre
     //and db so if we just took out the variables we are just saying this because we dont need to work with each of these items individually
+    //const request = db.transaction().objectStore().delete();
+    // Const db = getDB()
+    // Const transaction = db.transaction()
+    // Const objectStore = transaction.objectStore()
+    // Const request = objectStore.delete()
     .transaction([TODOS_TABLE], 'readwrite')
     .objectStore(TODOS_TABLE)
     .delete(id);
