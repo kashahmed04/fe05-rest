@@ -33,7 +33,8 @@ export const readToDos = async () => {
   //transaction is the overall operation and the object store is one part of the transaction
 
   //transaction is the actual operation we need to do (wait in a queue to wait and touch data base or reserve it so nothing
-  //else can touch it)**** while the object store is respinsbile for passing that operation into the JSON
+  //else can touch it if its available)**** while the object store is responsbile for
+  //passing that operation (data)**** into the JSON that we want to work with
   //(the data we got back from JSON or want to send to JSON from the transaction (both))****
 
   // readToDos will eventually resolve to a ToDo[]**
@@ -41,6 +42,10 @@ export const readToDos = async () => {
     // this is how we ask for all of the ToDos:**
     //from our storage get all the entires (how do we store it as a todos array to be used in main)**
     const request = objectStore.getAll();
+
+    //how do we know when to put our request in the promise or not because we did not for delete and does it matter
+    //where we put the request in the promise because for create it was in the bottom of the promise but in read, and update
+    //it was on the top of the promise****
 
     // set up the error handler**
     request.onerror = (event) => {

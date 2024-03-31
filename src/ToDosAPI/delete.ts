@@ -18,6 +18,7 @@ export const deleteToDo = async (id: string) => {
   //is the event involved in checking for the actions we do within each file to see if it went through****
 
   //go over**
+  //why dont we use transaction here like we did in create.ts****
   return new Promise<void>((resolve) => {
     request.onerror = (event) => {
       console.log(`something went wrong deleting ToDo ${id}`, event);

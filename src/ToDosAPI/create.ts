@@ -28,6 +28,8 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
 
     //why dont we do objectStore here instead of transaction because in read and update we did that with out requests
     //so doesnt add count as a request why did we put transaction here instead****
+    //also isnt the transaction the operation and the object store is the actual JSON data so wouldnt we want to work
+    //with thea actual JSON data****
     transaction.oncomplete = (event) => {
       console.log(`created ToDo ${id}`, event); //what would be the event in this case**
       resolve(); //what does this do**
