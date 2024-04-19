@@ -291,11 +291,11 @@ loadToDos();
  * 
  * this is also local to the users machine since it has a specific protocol/host/port right (local for indexed)
  * 
- * for the third bullet point what does it mean that all items should have a key in commmon because I thought keys had to be unique****
+ * for the third bullet point what does it mean that all items should have a key in commmon because I thought keys had to be unique
  * every row has a key and it has the same field on the object or the same datatype but then the rest of information in that row does
  * not have to be the same 
  * 
- * NoSQL is the actual data base right****
+ * NoSQL is the actual data base 
  * 
  * all the rows associated with our key can have different types of data and dont have to be the same (each key does
  * not have to have the same type of value)(like one todo having a full object and another having a partial todo)

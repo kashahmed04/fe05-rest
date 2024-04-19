@@ -1,59 +1,100 @@
 import { ToDo } from './ToDo.type';
+import { TODOS_TABLE, getDB } from './db';
 
 export const toggleToDo = async (id: string, checked: boolean) => {
-  // read what's there
-  //we parse the specific object in local storage we want by the id
-  //and the id is the key so it gets the value (the todo object) based on the id key
-  //and it makes the object a JS object**
-  //what if its null when we put ! and I thought it usually went before the localStorage how do we know if it goes
-  //before or after**
-  //we make a variable of type todo that stores an object from local stroage based on the id**
-  //the : represents that this variable is going to be of type whatever is on the right of the :**
-  //if the type is equal to something on the right then it will be that specific object, array, and what else**
-  const existingToDo: ToDo = JSON.parse(localStorage.getItem(id)!);
+  //go over all**
+  const db = await getDB();
+  const transaction = db.transaction([TODOS_TABLE], 'readwrite');
+  const objectStore = transaction.objectStore(TODOS_TABLE);
 
-  // alter it
-  // we use the spread** operator to spread the existing todo do say**
-  //then we change the checked state to the oppossite of what it was when its clicked**
-  //to change the checked state**
-  const alteredToDo: ToDo = {
-    ...existingToDo,
-    complete: !checked,
-  };
+  return new Promise<void>((resolve) => {
+    const request = objectStore.get(id); //get the object we want based on the id we passed in from main from the indexed DB storage**
 
-  //how does this changed the checked status of the exisitng todo if its in the same object I thought it would just create a new property
-  //of checked** (won't it put 2 checks in)(yes)
+    request.onerror = (event) => {
+      console.log(`something went wrong reading ToDo ${id} for toggle`, event);
+      resolve();
+    };
 
-  // and write it back
-  //we set the item to go back to local storage (we dont have a db.JSON data base here)**
-  //set item sets the key value pair in the local storage (JSON)** at the specific location or does it
-  //refresh to the bottom**
-  //when we do set item does it create a new entry if key not already in local sotrage (JSON data base??)**
-  //otherwise it just edits the value if the key already exists in the local sotrage**
-  //can we change a key or no once we make it then it stays the same**
-  //we stringify this item so that we can pass the value in as a string into local storage (makes the whole object
-  //a string)
-  //if there is an existing key then it overrides whats there otherwise if its a new key then we make a new entry
-  localStorage.setItem(id, JSON.stringify(alteredToDo));
+    request.onsuccess = (event) => {
+      // we read it first
+      //we make what is returned into a todo item**
+      const toDo: ToDo = (event.target as any).result;
+
+      // then alter it
+      //(change the checked to the oppossite once we click it in the todo object)**
+      toDo.complete = !checked;
+
+      // then put it back
+      //so we have add, delete, put, and what else for indexed DB and is this only available within index DB and nowehere else and
+      //we use the storage methods on slide 2 for local and session storage**
+      //why did we not do add and why did we do put here instead whats the difference**
+      //does put allow us to edit in a certain entry is that why whereas add just adds it to the end of the JSON?? or storage??**
+      const updateRequest = objectStore.put(toDo);
+
+      // handle the put-back error**
+      updateRequest.onerror = (event) => {
+        console.log(
+          `something went wrong writing ToDo ${id} for toggle`,
+          event,
+        );
+        resolve(); //when do we know to use resolve or not**
+        //why dont we use it in the method above for onsuccess but we use it in our errors and our onsuccess below**
+      };
+
+      // handle the put-back success**
+      updateRequest.onsuccess = (event) => {
+        console.log(`toggled ToDo ${id}`, event); //which events are these usually for the onerror, onsuccess, and onupgradeneeded**
+        //are these the events we should know**
+        resolve();
+      };
+    };
+  });
 };
 
+//go over**
 export const editToDo = async (id: string, editedToDo: Partial<ToDo>) => {
-  // read what's there
-  const existingToDo: ToDo = JSON.parse(localStorage.getItem(id)!);
+  //what do these commands do**
+  const db = await getDB();
+  const transaction = db.transaction([TODOS_TABLE], 'readwrite');
+  const objectStore = transaction.objectStore(TODOS_TABLE);
 
-  // alter it
-  const alteredToDo: ToDo = {
-    //would this say edited.id,complete,title,description in that order in the interface or coud it be random
-    //order but everything would have to be there from the interface**
-    //this would be the same thing for editedtodo but it would be editedtodo.id,complete,title,description**
-    ...existingToDo,
-    ...editedToDo,
-    //wont this create two values for the id how does that work****
-    //is it that when we put two things in an object like this how does it know which one to replace (this does a replacement)
-  };
+  return new Promise<void>((resolve) => {
+    const request = objectStore.get(id);
 
-  // and write it back
-  localStorage.setItem(id, JSON.stringify(alteredToDo));
+    request.onerror = (event) => {
+      console.log(`something went wrong reading ToDo ${id} for edit`, event);
+      resolve();
+    };
+
+    request.onsuccess = (event) => {
+      // read the existing ToDo
+      const toDo: ToDo = (event.target as any).result;
+
+      //alter it (with a fallback to what was already there)
+      //we have it to what was already there in case we dont change it right why would we need this
+      //because it would update reglardless if we didnt change the entry**
+      toDo.title = editedToDo.title || toDo.title;
+      toDo.description = editedToDo.description || toDo.description;
+
+      // and put it back
+      //does this target our whole JSON file and put the todo item back in at the same exact location we got it from with put**
+      //when we target data from a JSON file does it take it out from the JSON and give it to us or does it still
+      //remain in the JSON and give it to us (makes a copy for us while still in the JSON)**
+      const updateRequest = objectStore.put(toDo);
+
+      //go over**
+      updateRequest.onerror = (event) => {
+        console.log(`something went wrong writing ToDo ${id} for edit`, event);
+        resolve();
+      };
+
+      updateRequest.onsuccess = (event) => {
+        console.log(`edited ToDo ${id}`, event);
+        resolve();
+      };
+    };
+  });
 };
 
-//the only changes that were made were in create, read, update, and delete right nothing in main, index, or, todotype (yes)
+//what does event represent in all files (could be event code or error message and it would be meta data about the error event
+//same for success)
