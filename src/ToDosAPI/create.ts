@@ -45,4 +45,6 @@ export const createToDo = async (freshToDo: Omit<ToDo, 'id'>) => {
   //is one big string in our local storage (yes)
   //the console shows it as an object for us though not a string
   localStorage.setItem(id, JSON.stringify(todo));
+
+  //where do we set the id****
 };
