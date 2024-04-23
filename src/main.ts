@@ -70,6 +70,9 @@ const loadToDos = async () => {
     `;
 
     // Step 4 Code Goes Here:
+    //this sets the edit event for each todo so if the edit button is clicked on one item,
+    //then we put in the current values of the todo item on the modal
+    //to be able edit them****
     const editToDoButton = document.createElement('button');
     editToDoButton.innerText = '✏️';
     editToDoButton.onclick = () => {
@@ -91,6 +94,9 @@ const loadToDos = async () => {
     }
   });
 
+  //so for each button if it has a hassomecompleted equal to true then we remove the hide class for the delete button
+  //we do this multiple times when there are more elements with the hassomecompleted being equal to true****
+  //but only one element in the list has to have the hassomecompleted equal to true for it to show on the whole document**
   if (hasSomeCompleted) {
     deleteButton.classList.remove('hide');
   } else {
@@ -115,6 +121,9 @@ createButton.addEventListener('click', async () => {
   loadToDos();
 });
 
+//this is responsible for getting the values we have edited with the event listener
+//in loadtodos and updating them in the JSON database**** (this is the button in the modal after we are done editing)**
+//how do we get the button to show in the modal****
 editButton.addEventListener('click', async () => {
   const id = editIdInput.value;
   const title = editTitleInput.value;
@@ -136,7 +145,8 @@ deleteButton.addEventListener('click', async () => {
   checks.forEach((check) => {
     if (check.checked) {
       // if the ToDo is completed (flagged for delete)
-      // delete it! and keep track of the request in the deleteCalls array
+      // delete it! and keep track of the request in the deleteCalls array (keep track for entries to
+      // be deleted so we can check if they are all deleted from the our array in the callback)****
       deleteCalls.push(ToDosAPI.delete(check.dataset['id'] || ''));
     }
   });

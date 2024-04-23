@@ -8,6 +8,7 @@ export const readToDos = async () => {
   //storage follow
   //so we can also go through the local storage since its an array of objects right (same for session storage and other types)
   //of storages or just local and session storage****
+  //if we know the key we could say const toDoString = localStorage.getItem(key!) without the loop
   for (let i = 0; i < localStorage.length; i++) {
     // get the key at index i
     //basically for each iteration we get the key and it says

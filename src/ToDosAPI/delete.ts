@@ -9,5 +9,8 @@ export const deleteToDo = async (id: string) => {
   //one is the name for the index and one is the name for the field the index reference (we use title in the query we make and it maps
   //to the title in the certain object (name of field in the object))
   //the index name (name of index to create) and the key path is where in the object we go looking for the property
+
+  //do we need to stringify or parse to remove from a todo if it's a JSON**** (it knows the id because it's a string
+  //so it removes the item)
   localStorage.removeItem(id);
 };
